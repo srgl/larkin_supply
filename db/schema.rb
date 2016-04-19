@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160419091539) do
+ActiveRecord::Schema.define(version: 20160419091810) do
 
   create_table "loads", force: :cascade do |t|
     t.date     "delivery_date"
@@ -43,6 +43,9 @@ ActiveRecord::Schema.define(version: 20160419091539) do
     t.integer  "handling_unit_type"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "load_id"
   end
+
+  add_index "orders", ["load_id"], name: "index_orders_on_load_id"
 
 end
