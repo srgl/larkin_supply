@@ -13,4 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap-datepicker/core
 //= require_tree .
+
+$(document).on('ready page:load', function(){
+  $('.datepicker').datepicker({"format": "yyyy-mm-dd", "autoclose": true});
+});

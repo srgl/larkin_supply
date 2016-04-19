@@ -1,0 +1,85 @@
+== form_for @order do |f|
+  .row
+    .col-md-6
+      .form-group
+        == f.label :purchase_order_number
+        == f.text_field :purchase_order_number, class: "form-control"
+
+      .form-group
+        == f.label :delivery_date
+        == f.text_field :delivery_date, class: "form-control datepicker"
+
+      .form-group
+        == f.label :delivery_shift
+        == f.text_field :delivery_shift, class: "form-control"
+
+      .form-group
+        == f.label :origin_name
+        == f.text_field :origin_name, class: "form-control"
+
+      .form-group
+        == f.label :origin_raw_line_1
+        == f.text_field :origin_raw_line_1, class: "form-control"
+
+      .form-group
+        == f.label :origin_city
+        == f.text_field :origin_city, class: "form-control"
+
+      .form-group
+        == f.label :origin_state
+        == f.text_field :origin_state, class: "form-control"
+
+      .form-group
+        == f.label :origin_zip
+        == f.text_field :origin_zip, class: "form-control"
+
+      .form-group
+        == f.label :origin_country
+        == f.text_field :origin_country, class: "form-control"
+
+      .form-group
+        == f.label :client_name
+        == f.text_field :client_name, class: "form-control"
+
+    .col-md-6
+      .form-group
+        == f.label :destination_raw_line_1
+        == f.text_field :destination_raw_line_1, class: "form-control"
+
+      .form-group
+        == f.label :destination_city
+        == f.text_field :destination_city, class: "form-control"
+
+      .form-group
+        == f.label :destination_state
+        == f.text_field :destination_state, class: "form-control"
+
+      .form-group
+        == f.label :destination_zip
+        == f.text_field :destination_zip, class: "form-control"
+
+      .form-group
+        == f.label :destination_country
+        == f.text_field :destination_country, class: "form-control"
+
+      .form-group
+        == f.label :phone_number
+        == f.text_field :phone_number, class: "form-control"
+
+      .form-group
+        == f.label :mode
+        == f.text_field :mode, class: "form-control"
+
+      .form-group
+        == f.label :volume
+        == f.text_field :volume, class: "form-control"
+
+      .form-group
+        == f.label :handling_unit_quantity
+        == f.text_field :handling_unit_quantity, class: "form-control"
+
+      .form-group
+        == f.label :handling_unit_type
+        == f.text_field :handling_unit_type, class: "form-control"
+
+  == f.submit "Save", class: "btn btn-default"
