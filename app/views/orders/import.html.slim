@@ -1,0 +1,7 @@
+h1 Orders > Import
+
+== form_tag import_orders_path, multipart: true do
+  .form-group
+    label for="file-input" Select a csv file with orders
+    input#file-input type="file" name="file"
+  input.btn.btn-default type="submit" value="Import CSV"
