@@ -11,7 +11,7 @@
 
       .form-group
         == f.label :delivery_shift
-        == f.text_field :delivery_shift, class: "form-control"
+        == f.select :delivery_shift, Order.delivery_shifts.map { |key, value| [key.humanize, key] }, { include_blank: true }, class: "form-control"
 
       .form-group
         == f.label :origin_name
@@ -68,7 +68,7 @@
 
       .form-group
         == f.label :mode
-        == f.text_field :mode, class: "form-control"
+        == f.select :mode, Order.modes.map { |key, value| [key.humanize, key] }, { }, class: "form-control"
 
       .form-group
         == f.label :volume
@@ -80,6 +80,6 @@
 
       .form-group
         == f.label :handling_unit_type
-        == f.text_field :handling_unit_type, class: "form-control"
+        == f.select :handling_unit_type, Order.handling_unit_types.map { |key, value| [key.humanize, key] }, { }, class: "form-control"
 
   == f.submit "Save", class: "btn btn-default"
