@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    title Larkin Supply
+    == stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    == javascript_include_tag 'application', 'data-turbolinks-track' => true
+    == csrf_meta_tags
+  body
+    nav.navbar.navbar-inverse.navbar-fixed-top
+      .container
+        .navbar-header
+          button.navbar-toggle.collapsed aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button"
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand href="/" Larkin Supply
+        #navbar.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              a href="#{orders_path}" Orders
+            li
+              a href="#" Loads
+    .container
+      - if notice
+        p.alert.alert-success = notice
+      - if alert
+        p.alert.alert-danger = alert
+      == yield
