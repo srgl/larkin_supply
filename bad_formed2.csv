@@ -1,4 +1,4 @@
 foobar,delivery_date,delivery_shift,origin_name,origin_raw_line_1,origin_city,origin_state,origin_zip,origin_country,client name,destination_raw_line_1,destination_city,destination_state,destination_zip,destination_country,phone_number,mode,purchase_order_number,volume,handling_unit_quantity,handling_unit_type
-foo,32/9/9999,M,Larkin LLC,1505 S BLOUNT ST,RALEIGH,NC,27603,US,Lonnie Lind,6562 PROSPECT ROAD,MAXTON,NC,28364,US,699.480.1907,TRUCKLOAD,500402210,68,3,box
+foo,02/9/1999,M,Larkin LLC,1505 S BLOUNT ST,RALEIGH,NC,27603,US,Lonnie Lind,6562 PROSPECT ROAD,MAXTON,NC,28364,US,699.480.1907,TRUCKLOAD,500402210,68,3,box2
 bar,9/14/2014,M,Larkin LLC,1505 S BLOUNT ST,RALEIGH,NC,27603,US,Halle Metz,105 SILVER BERRY CT,RAEFORD,NC,28376,US,131.601.7742 x29127,TRUCKLOAD,500398675,69.67,4,box
 1,32/9/9999,M,Larkin LLC,1505 S BLOUNT ST,RALEIGH,NC,27603,US,Lonnie Lind,6562 PROSPECT ROAD,MAXTON,NC,28364,US,699.480.1907,TRUCKLOAD,500402210,68,3,box
