@@ -26,3 +26,11 @@ body {
 .toolbar .btn{
   margin-right: 8px;
 }
+
+.toolbar form.button_to{
+  display: inline-block;
+}
+
+.toolbar form.button_to input[type="checkbox"]{
+  display: none;
+}

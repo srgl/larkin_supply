@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     collection do
       get 'import'
       post 'import'
+      delete 'bulk_delete'
     end
   end
 

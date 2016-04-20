@@ -17,5 +17,23 @@
 //= require_tree .
 
 $(document).on('ready page:load', function(){
-  $('.datepicker').datepicker({"format": "yyyy-mm-dd", "autoclose": true});
+  $('input#select-all-checkbox').click(function(){
+    $('input.select-checkbox').prop('checked', $(this).prop('checked'));
+  });
+
+  $('input.select-checkbox, input#select-all-checkbox').click(function(){
+    var checked = $('input.select-checkbox:checked');
+    $('.btn.bulk-delete-btn').prop('disabled', !checked.length)
+  });
+
+  $('.btn.bulk-delete-btn').click(function(){
+    var checked = $('input.select-checkbox:checked');
+    $(this).data('confirm', ['Are you sure you want to delete', checked.length, 'record(s)?'].join(' '));
+  })
+
+  $('.btn.bulk-delete-btn').parent().submit(function(){
+    $(this).find('input:checked').remove();
+    var checked = $('input.select-checkbox:checked');
+    $(this).append(checked.clone());
+  });
 });
