@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'orders#index'
+
   resources :orders do
     collection do
       get 'import'
@@ -6,5 +8,5 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'orders#index'
+  resources :loads
 end
