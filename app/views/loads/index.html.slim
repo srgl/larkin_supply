@@ -11,4 +11,8 @@ h1 Loads
         th Delivery Shift
 
     tbody
+      - @loads.each do |load|
+        tr
+          td = load.delivery_date
+          td = load.delivery_shift
 
