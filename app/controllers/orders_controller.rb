@@ -34,8 +34,11 @@ class OrdersController < ApplicationController
 
   def import
     if request.post?
-      result = ImportOrders.new.run(params[:file])
-      redirect_to action: :index, notice: "Import finished, #{result} order(s) created"
+      begin
+        @result = ImportOrders.new.run(params[:file], method(:permit_params))
+      rescue Exception => e
+        flash.now[:alert] = e.message
+      end
     end
   end
 
@@ -46,6 +49,10 @@ class OrdersController < ApplicationController
   end
 
   def order_params
+    permit_params(params)
+  end
+
+  def permit_params(params)
     params.require(:order).permit(
       :purchase_order_number,
       :delivery_date,

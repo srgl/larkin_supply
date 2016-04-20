@@ -1,5 +1,15 @@
 h1 Orders > Import
 
+- if @result
+  .alert.alert-success
+    p = "Successfully imported #{@result[:imported]} order(s)"
+    - if @result[:failures].size > 0
+      p = "Failures count - #{@result[:failures].size}:"
+      - @result[:failures].take(5).each_with_index do |failure, i|
+        p
+          div = failure.inspect
+          div = @result[:messages][i]
+
 == form_tag import_orders_path, multipart: true do
   .form-group
     label for="file-input" Select a csv file with orders
