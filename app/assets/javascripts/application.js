@@ -23,17 +23,27 @@ $(document).on('ready page:load', function(){
 
   $('input.select-checkbox, input#select-all-checkbox').click(function(){
     var checked = $('input.select-checkbox:checked');
-    $('.btn.bulk-delete-btn').prop('disabled', !checked.length)
+    $('.btn.bulk-delete-btn').toggleClass('disabled', !checked.length);
   });
 
-  $('.btn.bulk-delete-btn').click(function(){
+  $('.btn.bulk-delete-btn').click(function(e){
+    e.preventDefault();
     var checked = $('input.select-checkbox:checked');
-    $(this).data('confirm', ['Are you sure you want to delete', checked.length, 'record(s)?'].join(' '));
+    if(!confirm(['Are you sure you want to delete', checked.length, 'record(s)?'].join(' ')))
+      return;
+
+    var data = {"_method":"delete", "orders_ids": []};
+    checked.each(function(){
+      data["orders_ids"].push($(this).val());
+    })
+    $.ajax({
+      type: "POST",
+      url: $(this).attr('href'),
+      dataType: "json",
+      data: data,
+      complete: function(){
+        location.reload();
+      }
+    });
   })
-
-  $('.btn.bulk-delete-btn').parent().submit(function(){
-    $(this).find('input:checked').remove();
-    var checked = $('input.select-checkbox:checked');
-    $(this).append(checked.clone());
-  });
 });
