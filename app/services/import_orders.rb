@@ -19,9 +19,6 @@ class ImportOrders
       CSV.foreach(file.path, headers: true) do |row|
         begin
           hash = row.to_hash
-          puts hash
-          hash = permitter.call(ActionController::Parameters.new({order: hash}))
-          puts hash
           hash["delivery_shift"] = SHIFT_MAP[hash["delivery_shift"]]
           hash["mode"] = MODE_MAP[hash["mode"]]
           hash["handling_unit_type"] = UNIT_TYPE_MAP[hash["handling_unit_type"]]
@@ -31,6 +28,7 @@ class ImportOrders
           else
             hash["delivery_date"] = nil
           end
+          hash = permitter.call(ActionController::Parameters.new({order: hash}))
           Order.create!(hash)
           imported += 1
         rescue Exception => e
