@@ -11,8 +11,7 @@ class OrdersController < ApplicationController
 
   def create
     if @order = Order.create(order_params)
-      flash[:notice] = "Order created"
-      return redirect_to edit_order_url(@order)
+      redirect_to edit_order_url(@order)
     end
     render :new
   end
@@ -22,9 +21,8 @@ class OrdersController < ApplicationController
 
   def update
     if @order.update(order_params)
-      flash[:notice] = "Order updated"
+      redirect_to edit_order_url(@order)
     end
-    redirect_to edit_order_url(@order)
   end
 
   def import
