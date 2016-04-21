@@ -43,7 +43,7 @@ class OrdersController < ApplicationController
   end
 
   def bulk_delete
-    orders = Order.where(id: params[:order_ids])
+    orders = Order.where(id: params[:ids])
     orders_count = orders.size
     orders.delete_all
     flash[:notice] = "#{orders_count} order(s) deleted"

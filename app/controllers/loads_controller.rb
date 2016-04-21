@@ -15,6 +15,14 @@ class LoadsController < ApplicationController
   def edit
   end
 
+  def bulk_delete
+    loads = Load.where(id: params[:ids])
+    loads_count = loads.size
+    loads.delete_all
+    flash[:notice] = "#{loads_count} load(s) deleted"
+    redirect_to action: :index
+  end
+
   private
 
   def find_load

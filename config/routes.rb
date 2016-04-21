@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :loads do
     collection do
-      #create
+      delete 'bulk_delete'
     end
   end
 end

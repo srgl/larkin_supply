@@ -33,9 +33,9 @@ $(document).on('ready page:load', function(){
     if(!confirm(['Are you sure you want to delete', checked.length, 'record(s)?'].join(' ')))
       return;
 
-    var data = {"_method":"delete", "order_ids": []};
+    var data = {"_method":"delete", "ids": []};
     checked.each(function(){
-      data["order_ids"].push($(this).val());
+      data["ids"].push($(this).val());
     })
     $.ajax({
       type: "POST",
