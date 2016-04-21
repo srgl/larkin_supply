@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'orders#index'
 
-  resources :orders do
+  resources :orders, except: [:destroy, :show] do
     collection do
       get 'import'
       post 'import'
@@ -9,5 +9,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :loads
+  resources :loads do
+    collection do
+      #create
+    end
+  end
 end

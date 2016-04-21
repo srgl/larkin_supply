@@ -24,6 +24,7 @@ $(document).on('ready page:load', function(){
   $('input.select-checkbox, input#select-all-checkbox').click(function(){
     var checked = $('input.select-checkbox:checked');
     $('.btn.bulk-delete-btn').toggleClass('disabled', !checked.length);
+    $('.btn.create-load-btn').toggleClass('disabled', !checked.length);
   });
 
   $('.btn.bulk-delete-btn').click(function(e){
@@ -43,6 +44,24 @@ $(document).on('ready page:load', function(){
       data: data,
       complete: function(){
         location.reload();
+      }
+    });
+  });
+
+  $('.btn.create-load-btn').click(function(e){
+    e.preventDefault();
+    var checked = $('input.select-checkbox:checked');
+    var data = {load: {order_ids: []}};
+    checked.each(function(){
+      data.load.order_ids.push($(this).val());
+    });
+    $.ajax({
+      type: "POST",
+      url: $(this).attr('href'),
+      dataType: "json",
+      data: data,
+      success: function(data) {
+        location = data.redirect;
       }
     });
   })
