@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :find_order, only: [:edit, :update, :destroy]
+  before_action :find_order, only: [:edit, :update]
 
   def index
     @orders = Order.all
@@ -27,11 +27,6 @@ class OrdersController < ApplicationController
     redirect_to edit_order_url(@order)
   end
 
-  def destroy
-    @order.destroy
-    redirect_to action: :index
-  end
-
   def import
     if request.post?
       begin
@@ -42,12 +37,13 @@ class OrdersController < ApplicationController
     end
   end
 
-  def bulk_delete
+  def delete
     orders = Order.where(id: params[:ids])
     orders_count = orders.size
     orders.delete_all
-    flash[:notice] = "#{orders_count} order(s) deleted"
-    redirect_to action: :index
+    respond_to do |format|
+      format.json { render :json => { redirect: orders_url } }
+    end
   end
 
   private

@@ -23,11 +23,11 @@ $(document).on('ready page:load', function(){
 
   $('input.select-checkbox, input#select-all-checkbox').click(function(){
     var checked = $('input.select-checkbox:checked');
-    $('.btn.bulk-delete-btn').toggleClass('disabled', !checked.length);
+    $('.btn.delete-btn').toggleClass('disabled', !checked.length);
     $('.btn.create-load-btn').toggleClass('disabled', !checked.length);
   });
 
-  $('.btn.bulk-delete-btn').click(function(e){
+  $('.btn.delete-btn').click(function(e){
     e.preventDefault();
     var checked = $('input.select-checkbox:checked');
     if(!confirm(['Are you sure you want to delete', checked.length, 'record(s)?'].join(' ')))
@@ -35,15 +35,15 @@ $(document).on('ready page:load', function(){
 
     var data = {"_method":"delete", "ids": []};
     checked.each(function(){
-      data["ids"].push($(this).val());
+      data.ids.push($(this).val());
     })
     $.ajax({
       type: "POST",
       url: $(this).attr('href'),
       dataType: "json",
       data: data,
-      complete: function(){
-        location.reload();
+      success: function(data){
+        location = data.redirect;
       }
     });
   });

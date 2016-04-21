@@ -15,12 +15,13 @@ class LoadsController < ApplicationController
   def edit
   end
 
-  def bulk_delete
+  def delete
     loads = Load.where(id: params[:ids])
     loads_count = loads.size
     loads.delete_all
-    flash[:notice] = "#{loads_count} load(s) deleted"
-    redirect_to action: :index
+    respond_to do |format|
+      format.json { render :json => { redirect: loads_url } }
+    end
   end
 
   private

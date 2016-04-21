@@ -1,17 +1,16 @@
 Rails.application.routes.draw do
   root 'orders#index'
 
-  resources :orders, except: [:destroy, :show] do
+  concern :deletable do
+    delete :index, on: :collection, action: :delete
+  end
+
+  resources :orders, except: [:destroy, :show], concerns: :deletable do
     collection do
       get 'import'
       post 'import'
-      delete 'bulk_delete'
     end
   end
 
-  resources :loads do
-    collection do
-      delete 'bulk_delete'
-    end
-  end
+  resources :loads, except: [:destroy, :show], concerns: :deletable
 end

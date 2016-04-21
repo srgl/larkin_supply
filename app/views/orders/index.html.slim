@@ -2,7 +2,7 @@ h1 Orders
 
 .toolbar
   a.btn.btn-default href="#{new_order_path}" Create order
-  a.btn.btn-default.bulk-delete-btn.disabled href="#{bulk_delete_orders_path}" Delete order(s)
+  a.btn.btn-default.delete-btn.disabled href="#{orders_path}" Delete order(s)
   a.btn.btn-default href="#{import_orders_path}" Import from CSV
   a.btn.btn-default.create-load-btn.disabled href="#{loads_path}" Create load
 
@@ -10,7 +10,8 @@ h1 Orders
   table.table.table-striped
     thead
       tr
-        th = check_box_tag "select-all-checkbox", nil
+        th
+          input#select-all-checkbox type="checkbox"
         th Order
         th Delivery&nbsp;Date
         th Delivery&nbsp;Shift
@@ -23,7 +24,8 @@ h1 Orders
     tbody
       - @orders.each do |order|
         tr
-          td = check_box_tag "order_ids[]", order.id, false, class: "select-checkbox", id: "order_ids_#{order.id}"
+          td
+            input.select-checkbox type="checkbox" value="#{order.id}"
           td == link_to order_title(order), edit_order_path(order)
           td = order.delivery_date
           td = order.delivery_shift

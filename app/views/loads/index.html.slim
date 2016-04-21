@@ -2,7 +2,7 @@ h1 Loads
 
 .toolbar
   a.btn.btn-default href="#{new_load_path}" Create load
-  a.btn.btn-default.bulk-delete-btn.disabled href="#{bulk_delete_loads_path}" Delete load(s)
+  a.btn.btn-default.delete-btn.disabled href="#{loads_path}" Delete load(s)
 
 .grid
   table.table.table-striped
@@ -17,7 +17,7 @@ h1 Loads
       - @loads.each do |load|
         tr
           td
-            input.select-checkbox type="checkbox"
+            input.select-checkbox type="checkbox" value="#{load.id}"
           td = load.delivery_date
           td = load.delivery_shift
 
