@@ -10,6 +10,7 @@ h1 Loads
       tr
         th
           input#select-all-checkbox type="checkbox"
+        th Load Number
         th Delivery Date
         th Delivery Shift
 
@@ -18,6 +19,7 @@ h1 Loads
         tr
           td
             input.select-checkbox type="checkbox" value="#{load.id}"
+          td = load.load_number
           td = load.delivery_date
           td = load.delivery_shift
 
