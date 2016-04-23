@@ -43,7 +43,7 @@ $(document).on('ready page:load', function(){
       dataType: "json",
       data: data,
       success: function(data){
-        location = data.redirect;
+        Turbolinks.visit(data.redirect);
       }
     });
   });
