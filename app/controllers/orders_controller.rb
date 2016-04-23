@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
 
   def create
     if @order = Order.create(order_params)
-      redirect_to edit_order_url(@order)
+      return redirect_to edit_order_url(@order)
     end
     render :new
   end
