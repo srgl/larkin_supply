@@ -1,8 +1,12 @@
 class LoadsController < ApplicationController
-  before_action :find_load, only: [:edit, :update, :destroy, :orders]
+  before_action :find_load, only: [:show, :update]
 
   def index
     @loads = Load.all
+  end
+
+  def show
+    @orders = Order.all
   end
 
   def new
@@ -10,28 +14,23 @@ class LoadsController < ApplicationController
   end
 
   def create
-    @load = Load.new(load_params)
-    if @load.save
-      redirect_to edit_load_url(@load)
-    else
-      render :new
+    if @load = Load.create(load_params)
+      return redirect_to load_url(@load)
     end
-  end
-
-  def edit
     @orders = Order.all
+    render :new
   end
 
   def update
-    @load.update(load_params)
-    #redirect_to edit_load_url(@load)
+    if @load.update(load_params)
+      return redirect_to load_url(@load)
+    end
     @orders = Order.all
-    render :edit
+    render :show
   end
 
   def delete
     loads = Load.where(id: params[:ids])
-    loads_count = loads.size
     loads.delete_all
     respond_to do |format|
       format.json { render :json => { redirect: loads_url } }
@@ -41,7 +40,7 @@ class LoadsController < ApplicationController
   private
 
   def find_load
-    @load ||= Load.includes(:orders).find(params[:id])
+    @load = Load.includes(:orders).find(params[:id])
   end
 
   def load_params

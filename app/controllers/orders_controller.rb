@@ -48,7 +48,7 @@ class OrdersController < ApplicationController
   private
 
   def find_order
-    @order ||= Order.find(params[:id])
+    @order = Order.find(params[:id])
   end
 
   def order_params

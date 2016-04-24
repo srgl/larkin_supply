@@ -9,14 +9,8 @@ Rails.application.routes.draw do
     collection do
       get 'import'
       post 'import'
-      post 'lookup'
     end
   end
 
-  resources :loads, except: [:destroy, :show], concerns: :deletable do
-    member do
-      post 'orders'
-      delete 'orders'
-    end
-  end
+  resources :loads, except: [:destroy, :edit], concerns: :deletable
 end
