@@ -5,5 +5,4 @@ class Order < ActiveRecord::Base
 	enum mode: [:truckload]
 	enum handling_unit_type: [:box]
 
-  default_scope { order('delivery_date') }
 end
