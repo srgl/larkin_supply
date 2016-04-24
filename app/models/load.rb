@@ -6,6 +6,8 @@ class Load < ActiveRecord::Base
   validates :delivery_date, :delivery_shift, presence: true
   validate :delivery_shift_occupation, :volume_excess
 
+  scope :ordered_by_date, -> { order(:delivery_date, :delivery_shift) }
+
   AVAILABLE_VOLUME = 1400
 
   def load_number

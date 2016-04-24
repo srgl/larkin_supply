@@ -2,7 +2,7 @@ class LoadsController < ApplicationController
   before_action :find_load, only: [:show, :update]
 
   def index
-    @loads = Load.all
+    @loads = Load.ordered_by_date()
   end
 
   def show
