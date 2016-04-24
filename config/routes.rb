@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     delete :index, on: :collection, action: :delete
   end
 
-  resources :orders, except: [:destroy, :show], concerns: :deletable do
+  resources :orders, except: [:destroy, :edit], concerns: :deletable do
     collection do
       get 'import'
       post 'import'

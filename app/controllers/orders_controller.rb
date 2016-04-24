@@ -1,9 +1,13 @@
 class OrdersController < ApplicationController
-  before_action :find_order, only: [:edit, :update]
+  before_action :find_order, only: [:show, :update]
 
   def index
     @orders = Order.all
   end
+
+  def show
+  end
+
 
   def new
     @order = Order.new
@@ -11,18 +15,16 @@ class OrdersController < ApplicationController
 
   def create
     if @order = Order.create(order_params)
-      return redirect_to edit_order_url(@order)
+      return redirect_to order_url(@order)
     end
     render :new
   end
 
-  def edit
-  end
-
   def update
     if @order.update(order_params)
-      redirect_to edit_order_url(@order)
+      return redirect_to order_url(@order)
     end
+    render :show
   end
 
   def import
@@ -37,17 +39,9 @@ class OrdersController < ApplicationController
 
   def delete
     orders = Order.where(id: params[:ids])
-    orders_count = orders.size
     orders.delete_all
     respond_to do |format|
       format.json { render :json => { redirect: orders_url } }
-    end
-  end
-
-  def lookup
-    @orders = Order.where.not(id: params[:order_ids]);
-    respond_to do |format|
-      format.html {render :layout => 'modal'}
     end
   end
 
