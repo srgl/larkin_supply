@@ -1,7 +1,7 @@
 class Load < ActiveRecord::Base
-	has_many :orders, autosave: false
+  has_many :orders, autosave: false
 
-	enum delivery_shift: [:morning, :noon, :evening]
+  enum delivery_shift: [:morning, :noon, :evening]
 
   validates :delivery_date, :delivery_shift, presence: true
   validate :delivery_shift_occupation, :volume_excess
