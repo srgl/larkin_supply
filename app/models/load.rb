@@ -14,6 +14,10 @@ class Load < ActiveRecord::Base
     "L#{date}#{delivery_shift[0].upcase}"
   end
 
+  def total_volume
+    orders.inject(0){ |v, order| v + order.volume }
+  end
+
   def delivery_shift_occupation
     puts self.attributes
     loads = Load.where(delivery_shift: Load.delivery_shifts[delivery_shift], delivery_date: delivery_date)
@@ -22,6 +26,6 @@ class Load < ActiveRecord::Base
   end
 
   def volume_excess
-    errors.add(:base, "Available volume exceeded") if orders.inject(0){|v, order| v+order.volume} > AVAILABLE_VOLUME
+    errors.add(:base, "Available volume of #{AVAILABLE_VOLUME} ft3 exceeded") if total_volume > AVAILABLE_VOLUME
   end
 end
