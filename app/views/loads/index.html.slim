@@ -20,7 +20,7 @@ h1 Loads
         tr
           td
             input.select-checkbox type="checkbox" value="#{load.id}"
-          td == link_to load.load_number, load_path(load)
+          td == link_to load.load_number, edit_load_path(load)
           td = load.delivery_date
           td = load.delivery_shift
           td = load.total_volume

@@ -40,7 +40,7 @@
         tr
           td
             == check_box_tag "load[order_ids][]", order.id, @load.order_ids.include?(order.id), {id: "load_order_#{order.id}"}
-          td == link_to order_title(order), order_path(order)
+          td == link_to order_title(order), edit_order_path(order)
           td = order.delivery_date
           td = order.delivery_shift
           td = order.client_name
