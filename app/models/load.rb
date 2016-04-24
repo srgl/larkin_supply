@@ -26,6 +26,8 @@ class Load < ActiveRecord::Base
   end
 
   def volume_excess
-    errors.add(:base, "Available volume of #{AVAILABLE_VOLUME} ft3 exceeded") if total_volume > AVAILABLE_VOLUME
+    if total_volume > AVAILABLE_VOLUME
+      errors.add(:base, "Available volume of #{AVAILABLE_VOLUME}ft3 exceeded")
+    end
   end
 end
