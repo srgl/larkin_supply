@@ -6,6 +6,9 @@
         li = message
 
 == form_for @load do |f|
+  .toolbar
+    == f.submit "Save", class: "btn btn-default"
+    a.btn.btn-default href="#{download_load_path(@load)}" Download
   .row
     .col-md-6
       .form-group
@@ -19,7 +22,7 @@
       .form-group
         == f.label :delivery_shift
         == f.select :delivery_shift, Load.delivery_shifts.map { |key, value| [key.humanize, key] }, { include_blank: true }, class: "form-control"
-  == f.submit "Save", class: "btn btn-default"
+
   h2 Orders
   == hidden_field_tag "load[order_ids][]", nil
   table.table.table-striped

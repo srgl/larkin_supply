@@ -1,4 +1,6 @@
 == form_for @order do |f|
+  .toolbar
+    == f.submit "Save", class: "btn btn-default"
   .row
     .col-md-6
       .form-group
@@ -81,5 +83,3 @@
       .form-group
         == f.label :handling_unit_type
         == f.select :handling_unit_type, Order.handling_unit_types.map { |key, value| [key.humanize, key] }, { }, class: "form-control"
-
-  == f.submit "Save", class: "btn btn-default"

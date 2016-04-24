@@ -39,6 +39,9 @@ class LoadsController < ApplicationController
     end
   end
 
+  def download
+  end
+
   private
 
   def find_load

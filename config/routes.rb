@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :loads, except: [:destroy, :edit], concerns: :deletable do
     member do
-      get 'print'
+      get 'download'
     end
   end
 end
