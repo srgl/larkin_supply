@@ -18,6 +18,7 @@
         == f.select :delivery_shift, Load.delivery_shifts.map { |key, value| [key.humanize, key] }, { include_blank: true }, class: "form-control"
   == f.submit "Save", class: "btn btn-default"
   h2 Orders
+  == hidden_field_tag "load[order_ids][]", nil
   table.table.table-striped
     thead
       tr

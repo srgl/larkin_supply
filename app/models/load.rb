@@ -22,9 +22,6 @@ class Load < ActiveRecord::Base
   end
 
   def volume_excess
-    # if orders.where(load_id: id).sum(:volume) > AVAILABLE_VOLUME
-    #   errors.add(:base, "Available volume exceeded")
-    # end
-    errors.add(:base, "Available volume exceeded") if orders.size() > 3
+    errors.add(:base, "Available volume exceeded") if orders.inject(0){|v, order| v+order.volume} > AVAILABLE_VOLUME
   end
 end

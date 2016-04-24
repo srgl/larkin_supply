@@ -24,7 +24,9 @@ class LoadsController < ApplicationController
 
   def update
     @load.update(load_params)
-    redirect_to edit_load_url(@load)
+    #redirect_to edit_load_url(@load)
+    @orders = Order.all
+    render :edit
   end
 
   def delete
