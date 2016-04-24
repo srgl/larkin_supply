@@ -6,18 +6,20 @@ class LoadsController < ApplicationController
   end
 
   def show
-    @orders = Order.all
+    @orders = Order.ordered_by_ids_and_date(@load.order_ids)
   end
 
   def new
     @load = Load.new
+    @orders = Order.ordered_by_date()
   end
 
   def create
-    if @load = Load.create(load_params)
+    @load = Load.new(load_params)
+    if @load.save
       return redirect_to load_url(@load)
     end
-    @orders = Order.all
+    @orders = Order.ordered_by_ids_and_date(@load.order_ids)
     render :new
   end
 
@@ -25,7 +27,7 @@ class LoadsController < ApplicationController
     if @load.update(load_params)
       return redirect_to load_url(@load)
     end
-    @orders = Order.all
+    @orders = Order.ordered_by_ids_and_date(@load.order_ids)
     render :show
   end
 
