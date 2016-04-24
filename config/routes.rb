@@ -12,5 +12,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :loads, except: [:destroy, :show], concerns: :deletable
+  resources :loads, except: [:destroy], concerns: :deletable do
+    member do
+      get 'print'
+    end
+  end
 end
