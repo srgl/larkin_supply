@@ -1,11 +1,11 @@
 class OrdersController < ApplicationController
-  before_action :find_order, only: [:edit, :update]
+  before_action :find_order, only: [:show, :update]
 
   def index
     @orders = Order.ordered_by_date
   end
 
-  def edit
+  def show
   end
 
 
@@ -16,16 +16,16 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     if @order.save
-      return redirect_to edit_order_url(@order)
+      return redirect_to order_url(@order)
     end
     render :new
   end
 
   def update
     if @order.update(order_params)
-      return redirect_to edit_order_url(@order)
+      return redirect_to order_url(@order)
     end
-    render :edit
+    render :show
   end
 
   def import

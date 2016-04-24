@@ -1,11 +1,11 @@
 class LoadsController < ApplicationController
-  before_action :find_load, only: [:edit, :update]
+  before_action :find_load, only: [:show, :update]
 
   def index
     @loads = Load.includes(:orders).ordered_by_date()
   end
 
-  def edit
+  def show
     @orders = Order.ordered_by_ids_and_date(@load.order_ids)
   end
 
@@ -17,7 +17,7 @@ class LoadsController < ApplicationController
   def create
     @load = Load.new(load_params)
     if @load.save
-      return redirect_to edit_load_url(@load)
+      return redirect_to load_url(@load)
     end
     @orders = Order.ordered_by_ids_and_date(@load.order_ids)
     render :new
@@ -25,10 +25,10 @@ class LoadsController < ApplicationController
 
   def update
     if @load.update(load_params)
-      return redirect_to edit_load_url(@load)
+      return redirect_to load_url(@load)
     end
     @orders = Order.ordered_by_ids_and_date(@load.order_ids)
-    render :edit
+    render :show
   end
 
   def delete

@@ -25,7 +25,7 @@ h1 Orders
         tr
           td
             input.select-checkbox type="checkbox" value="#{order.id}"
-          td == link_to order_title(order), edit_order_path(order)
+          td == link_to order_title(order), order_path(order)
           td = order.delivery_date
           td = order.delivery_shift
           td = order.client_name
