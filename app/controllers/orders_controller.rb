@@ -44,6 +44,13 @@ class OrdersController < ApplicationController
     end
   end
 
+  def lookup
+    @orders = Order.where.not(id: params[:order_ids]);
+    respond_to do |format|
+      format.html {render :layout => 'modal'}
+    end
+  end
+
   private
 
   def find_order

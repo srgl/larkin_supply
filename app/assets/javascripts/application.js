@@ -13,11 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap-sprockets
 //= require bootstrap-datepicker/core
 //= require_tree .
 
 $(document).on('ready page:load', function(){
-  $('input#select-all-checkbox').click(function(){
+  $('input#select-all-checkbox').on('click', function(){
     $('input.select-checkbox').prop('checked', $(this).prop('checked'));
   });
 

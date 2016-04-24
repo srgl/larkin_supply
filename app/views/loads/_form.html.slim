@@ -1,0 +1,47 @@
+- if @load.errors.any?
+  .errors
+    h2 = "#{pluralize(@load.errors.count, 'error')} prohibited this load from being saved:"
+    ul
+      - @load.errors.full_messages.each do |message|
+        li = message
+
+== form_for @load do |f|
+  .row
+    .col-md-6
+      .form-group
+        == f.label :delivery_date
+        == f.text_field :delivery_date, class: "form-control", "data-provide" => "datepicker", "data-date-format" => "yyyy-mm-dd"
+
+    .col-md-6
+      .form-group
+        == f.label :delivery_shift
+        == f.select :delivery_shift, Load.delivery_shifts.map { |key, value| [key.humanize, key] }, { include_blank: true }, class: "form-control"
+  == f.submit "Save", class: "btn btn-default"
+  h2 Orders
+  table.table.table-striped
+    thead
+      tr
+        th
+        th Order
+        th Delivery&nbsp;Date
+        th Delivery&nbsp;Shift
+        th Client&nbsp;Name
+        th City
+        th Zip
+        th Street
+        th Phone
+        th Volume
+    tbody
+      - @orders.each do |order|
+        tr
+          td
+            == check_box_tag "load[order_ids][]", order.id, @load.order_ids.include?(order.id), {id: "load_order_#{order.id}"}
+          td == link_to order_title(order), edit_order_path(order)
+          td = order.delivery_date
+          td = order.delivery_shift
+          td = order.client_name
+          td = order.destination_city
+          td = order.destination_zip
+          td = order.destination_raw_line_1
+          td = order.phone_number
+          td = order.volume

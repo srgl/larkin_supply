@@ -34,3 +34,8 @@ body {
 .toolbar form.button_to input[type="checkbox"]{
   display: none;
 }
+
+.modal-body{
+  max-height: 500px;
+  overflow: auto;
+}

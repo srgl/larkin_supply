@@ -1,0 +1,32 @@
+.modal-header
+  button.close aria-label="Close" data-dismiss="modal" type="button"
+    span aria-hidden="true" &times;
+  h4#myModalLabel.modal-title Select orders
+.modal-body
+  table.table.table-striped
+    thead
+      tr
+        th
+          input#select-all-checkbox type="checkbox"
+        th Order
+        th Delivery&nbsp;Date
+        th Delivery&nbsp;Shift
+        th City
+        th Zip
+        th Street
+        th Volume
+    tbody
+      - @orders.each do |order|
+        tr
+          td
+            input.select-checkbox type="checkbox" value="#{order.id}"
+          td == link_to order_title(order), edit_order_path(order)
+          td = order.delivery_date
+          td = order.delivery_shift
+          td = order.destination_city
+          td = order.destination_zip
+          td = order.destination_raw_line_1
+          td = order.volume
+.modal-footer
+  button.btn.btn-default data-dismiss="modal" type="button" Cancel
+  button.btn.btn-primary.add-btn type="button" Add
