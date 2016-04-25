@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 if User.where(email: 'dispatcher@larkin.com').count == 0
   dispatcher = User.new
+  dispatcher.role = "dispatcher"
   dispatcher.email = 'dispatcher@larkin.com'
   dispatcher.password = 'larkin'
   dispatcher.password_confirmation = 'larkin'
@@ -15,6 +16,7 @@ end
 
 if User.where(email: 'driver@larkin.com').count == 0
   driver = User.new
+  driver.role = "driver"
   driver.email = 'driver@larkin.com'
   driver.password = 'larkin'
   driver.password_confirmation = 'larkin'

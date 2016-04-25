@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :find_order, only: [:show, :update]
+  authorize_resource
 
   def index
     @orders = Order.ordered_by_date

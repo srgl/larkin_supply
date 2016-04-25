@@ -1,6 +1,7 @@
 class LoadsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_load, only: [:show, :update, :download]
+  authorize_resource
 
   def index
     @loads = Load.includes(:orders).ordered_by_date()
