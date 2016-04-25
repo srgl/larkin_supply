@@ -1,5 +1,5 @@
 class LoadsController < ApplicationController
-  before_action :find_load, only: [:show, :update]
+  before_action :find_load, only: [:show, :update, :download]
 
   def index
     @loads = Load.includes(:orders).ordered_by_date()
@@ -40,6 +40,9 @@ class LoadsController < ApplicationController
   end
 
   def download
+    @orders = Order.ordered_by_ids_and_date(@load.order_ids)
+    pdf = render_to_string pdf: "#{@load.load_number}", layout: "pdf", template: "loads/show"
+    send_data pdf, filename: "#{@load.load_number}.pdf"
   end
 
   private

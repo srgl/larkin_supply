@@ -8,20 +8,23 @@
 == form_for @load do |f|
   .toolbar
     == f.submit "Save", class: "btn btn-default"
-    a.btn.btn-default href="#{download_load_path(@load)}" Download
+    a.btn.btn-default target="_blank" href="#{download_load_path(@load)}" Download
   .row
     .col-md-6
       .form-group
         == f.label :delivery_date
         == f.text_field :delivery_date, class: "form-control", "data-provide" => "datepicker", "data-date-format" => "yyyy-mm-dd"
-      .form-group
-        == f.label :total_volume
-        == f.text_field :total_volume, class: "form-control", disabled: true
+
 
     .col-md-6
       .form-group
         == f.label :delivery_shift
         == f.select :delivery_shift, Load.delivery_shifts.map { |key, value| [key.humanize, key] }, { include_blank: true }, class: "form-control"
+  .row
+    .col-md-6
+      .form-group
+        == f.label :total_volume
+        == f.text_field :total_volume, class: "form-control", disabled: true
 
   h2 Orders
   == hidden_field_tag "load[order_ids][]", nil
