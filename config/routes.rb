@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'orders#index'
+  root 'pages#index'
 
   concern :deletable do
     delete :index, on: :collection, action: :delete
