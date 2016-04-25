@@ -13,6 +13,10 @@
           label
             = f.check_box :remember_me
             span Remember Me
-    .actions
+    .form-group
       = f.submit "Log in", class: 'btn btn-default'
+    .form-group
+      = f.submit "Log in as dispatcher", class: 'btn btn-default', onclick: '$("#user_email").val("dispatcher@larkin.com");$("#user_password").val("larkin");'
+    .form-group
+      = f.submit "Log in as driver", class: 'btn btn-default', onclick: '$("#user_email").val("driver@larkin.com");$("#user_password").val("larkin");'
   = render "devise/shared/links"
