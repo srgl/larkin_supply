@@ -21,6 +21,14 @@ html
               a href="#{orders_path}" Orders
             li
               a href="#{loads_path}" Loads
+
+          ul.nav.navbar-nav.navbar-right
+            - if user_signed_in?
+              li
+                a = current_user.email
+              li
+                = link_to "Sign out", destroy_user_session_path, method: :delete
+
     .container
       - if notice
         p.alert.alert-success = notice
