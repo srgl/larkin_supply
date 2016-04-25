@@ -17,8 +17,9 @@ html
           a.navbar-brand href="/" Larkin Supply
         #navbar.collapse.navbar-collapse
           ul.nav.navbar-nav
-            li
-              a href="#{orders_path}" Orders
+            - if can? :index, Order
+              li
+                a href="#{orders_path}" Orders
             li
               a href="#{loads_path}" Loads
 

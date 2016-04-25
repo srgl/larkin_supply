@@ -1,8 +1,10 @@
 h1 Loads
 
 .toolbar
-  a.btn.btn-default href="#{new_load_path}" Create load
-  a.btn.btn-default.delete-btn.disabled href="#{loads_path}" Delete load(s)
+  - if can? :create, Load
+    a.btn.btn-default href="#{new_load_path}" Create load
+  - if can? :destroy, Load
+    a.btn.btn-default.delete-btn.disabled href="#{loads_path}" Delete load(s)
 
 .grid
   table.table.table-striped
