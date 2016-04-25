@@ -20,8 +20,9 @@ html
             - if can? :index, Order
               li
                 a href="#{orders_path}" Orders
-            li
-              a href="#{loads_path}" Loads
+            - if can? :index, Load
+              li
+                a href="#{loads_path}" Loads
 
           ul.nav.navbar-nav.navbar-right
             - if user_signed_in?

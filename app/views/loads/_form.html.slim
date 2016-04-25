@@ -9,7 +9,8 @@
   .toolbar
     - if can? :update, @load
       == f.submit "Save", class: "btn btn-default"
-    a.btn.btn-default target="_blank" href="#{download_load_path(@load)}" Download
+    - if @load.id
+      a.btn.btn-default target="_blank" href="#{download_load_path(@load)}" Download
   .row
     .col-md-6
       .form-group
