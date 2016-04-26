@@ -15,11 +15,12 @@ h1 Orders
         th Delivery&nbsp;Date
         th Delivery&nbsp;Shift
         th Client&nbsp;Name
-        th City
-        th Zip
-        th Street
+        th Origin&nbsp;Address
+        th Destination&nbsp;Address
         th Phone
-        th
+        th Type
+        th Qty
+        th Volume
     tbody
       - @orders.each do |order|
         tr
@@ -29,7 +30,9 @@ h1 Orders
           td = order.delivery_date
           td = order.delivery_shift
           td = order.client_name
-          td = order.destination_city
-          td = order.destination_zip
-          td = order.destination_raw_line_1
+          td = order.origin_address
+          td = order.destination_address
           td = order.phone_number
+          td = order.handling_unit_type
+          td = order.handling_unit_quantity
+          td = order.volume

@@ -11,9 +11,7 @@
           th Order
           th Delivery&nbsp;Date
           th Delivery&nbsp;Shift
-          th City
-          th Zip
-          th Street
+          th Destination&nbsp;Address
           th Volume
           th
       tbody
@@ -24,9 +22,7 @@
             td == link_to order_title(order), order_path(order)
             td = order.delivery_date
             td = order.delivery_shift
-            td = order.destination_city
-            td = order.destination_zip
-            td = order.destination_raw_line_1
+            td = order.destination_address
             td = order.volume
 
 .modal-footer
