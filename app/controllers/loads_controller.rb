@@ -48,7 +48,7 @@ class LoadsController < ApplicationController
 
   def download
     @orders = Order.ordered_by_ids_and_date(@load.order_ids)
-    pdf = render_to_string pdf: "#{@load.load_number}", layout: "pdf", template: "loads/show"
+    pdf = render_to_string pdf: "#{@load.load_number}", layout: "pdf", template: "loads/show", viewport_size: '1920x995'
     send_data pdf, filename: "#{@load.load_number}.pdf"
   end
 

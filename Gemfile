@@ -48,7 +48,7 @@ end
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'slim'
 gem 'bootstrap-datepicker-rails'
-gem 'wkhtmltopdf-binary'
+gem 'wkhtmltopdf-binary-edge'
 gem 'wicked_pdf'
 gem 'devise'
 gem 'cancancan'

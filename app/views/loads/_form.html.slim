@@ -29,8 +29,9 @@
         == f.text_field :total_volume, class: "form-control", disabled: true
 
   h2 Orders
-  - if can? :update, @load
-    a.btn.btn-default.add-orders href="#{lookup_orders_path}" Add orders
+  .toolbar
+    - if can? :update, @load
+      a.btn.btn-default.add-orders href="#{lookup_orders_path}" Add orders
   == hidden_field_tag "load[order_ids][]", nil
   table.table.table-striped
     thead
@@ -44,7 +45,7 @@
         th Street
         th Phone
         th Volume
-        th
+        th.commands
     tbody
       - @load.orders.each do |order|
         tr
