@@ -1,7 +1,7 @@
 $(document).on('ready page:load', function(){
   $('.btn.add-orders').click(function(){
     var data = {ids: []};
-    $('form.edit_load input[name="load[order_ids][]"]').each(function(){
+    $('form#load_form input[name="load[order_ids][]"]').each(function(){
       if($(this).val())
         data.ids.push($(this).val());
     });
@@ -9,9 +9,9 @@ $(document).on('ready page:load', function(){
       var modal = $('.modal-holder').html('').append(result).find('.modal').modal();
       modal.find('.btn-ok').click(function(){
         modal.find('.select-checkbox:checked').each(function(){
-          $('form.edit_load').append('<input type="hidden" name="load[order_ids][]" value='+$(this).val()+' />');
+          $('form#load_form').append('<input type="hidden" name="load[order_ids][]" value='+$(this).val()+' />');
         });
-        $('form.edit_load').submit()
+        $('form#load_form').submit()
       });
     });
     return false;

@@ -5,7 +5,7 @@
       - @load.errors.full_messages.each do |message|
         li = message
 
-== form_for @load do |f|
+== form_for @load, html: {id: "load_form"} do |f|
   .toolbar
     - if can? :update, @load
       == f.submit "Save", class: "btn btn-default"

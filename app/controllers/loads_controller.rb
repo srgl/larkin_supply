@@ -17,6 +17,8 @@ class LoadsController < ApplicationController
   end
 
   def create
+    prefill_ordering
+
     @load = Load.new(load_params)
     if @load.save
       return redirect_to load_url(@load)
@@ -26,11 +28,7 @@ class LoadsController < ApplicationController
   end
 
   def update
-    params[:load][:orders_attributes] = []
-
-    params[:load][:order_ids].each_with_index do |id, i|
-      params[:load][:orders_attributes] << {id: id, order: i} if !id.blank?
-    end
+    prefill_ordering
 
     if @load.update(load_params)
       return redirect_to load_url(@load)
@@ -53,6 +51,14 @@ class LoadsController < ApplicationController
   end
 
   private
+
+  def prefill_ordering
+    params[:load][:orders_attributes] = []
+
+    params[:load][:order_ids].each_with_index do |id, i|
+      params[:load][:orders_attributes].push({id: id, order: i}) if !id.blank?
+    end
+  end
 
   def find_load
     @load = Load.includes(:orders).find(params[:id])
