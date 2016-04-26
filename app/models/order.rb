@@ -13,4 +13,12 @@ class Order < ActiveRecord::Base
     orders.ordered_by_date
   }
 
+  def origin_address
+    "#{origin_raw_line_1}, #{origin_city}, #{origin_state} #{origin_zip}"
+  end
+
+  def destination_address
+    "#{destination_raw_line_1}, #{destination_city}, #{destination_state} #{destination_zip}"
+  end
+
 end
