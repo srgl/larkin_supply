@@ -1,0 +1,43 @@
+.grid
+  table.table.table-striped
+    thead
+      tr
+        - if selectable
+          th
+            input#select-all-checkbox type="checkbox"
+        th Order
+        th Delivery&nbsp;Date
+        th Delivery&nbsp;Shift
+        th Client&nbsp;Name
+        th Origin&nbsp;Address
+        th Destination&nbsp;Address
+        th Phone
+        th Type
+        th Qty
+        th Volume
+        - if rearrangable
+          th.commands
+    tbody
+      - orders.each do |order|
+        tr
+          - if form
+            input type="hidden" name="load[order_ids][]" value="#{order.id}"
+          - if selectable
+            td
+              input.select-checkbox type="checkbox" value="#{order.id}"
+          td == link_to order_title(order), order_path(order)
+          td = order.delivery_date
+          td = order.delivery_shift
+          td = order.client_name
+          td = order.origin_address
+          td = order.destination_address
+          td = order.phone_number
+          td = order.handling_unit_type
+          td = order.handling_unit_quantity
+          td = order.volume
+          - if rearrangable
+            td.commands
+              .btn-group.btn-group-xs
+                button.btn.btn-default.glyphicon.glyphicon-menu-up.move-up
+                button.btn.btn-default.glyphicon.glyphicon-menu-down.move-down
+                button.btn.btn-default.glyphicon.glyphicon-remove.remove

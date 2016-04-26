@@ -5,34 +5,4 @@ h1 Orders
   a.btn.btn-default.delete-btn.disabled href="#{orders_path}" Delete order(s)
   a.btn.btn-default href="#{import_orders_path}" Import from CSV
 
-.grid
-  table.table.table-striped
-    thead
-      tr
-        th
-          input#select-all-checkbox type="checkbox"
-        th Order
-        th Delivery&nbsp;Date
-        th Delivery&nbsp;Shift
-        th Client&nbsp;Name
-        th Origin&nbsp;Address
-        th Destination&nbsp;Address
-        th Phone
-        th Type
-        th Qty
-        th Volume
-    tbody
-      - @orders.each do |order|
-        tr
-          td
-            input.select-checkbox type="checkbox" value="#{order.id}"
-          td == link_to order_title(order), order_path(order)
-          td = order.delivery_date
-          td = order.delivery_shift
-          td = order.client_name
-          td = order.origin_address
-          td = order.destination_address
-          td = order.phone_number
-          td = order.handling_unit_type
-          td = order.handling_unit_quantity
-          td = order.volume
+== render 'grid', orders: @orders, form: false, rearrangable: false, selectable: true
