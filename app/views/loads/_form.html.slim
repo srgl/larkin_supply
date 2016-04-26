@@ -44,8 +44,11 @@
         th Zip
         th Street
         th Phone
+        th Type
+        th Qty
         th Volume
-        th.commands
+        - if can? :update, @load
+          th.commands
     tbody
       - @load.orders.each do |order|
         tr
@@ -58,6 +61,8 @@
           td = order.destination_zip
           td = order.destination_raw_line_1
           td = order.phone_number
+          td = order.handling_unit_type
+          td = order.handling_unit_quantity
           td = order.volume
           - if can? :update, @load
             td.commands
