@@ -5,14 +5,8 @@ upstream {{ app_name }}-puma {
 }
 
 server {
-    listen      {{ app_port }};
-    server_name "";
-    return      444;
-}
-
-server {
   listen {{ app_port }} deferred;
-  server_name ~^[\w-]+\.[\w]+$;
+  server_name "";
 
   root {{ app_path }}/current/public;
   access_log {{ app_path }}/current/log/nginx.access.log;

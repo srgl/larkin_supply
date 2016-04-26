@@ -45,6 +45,7 @@ group :development do
   gem 'spring'
 end
 
+gem 'dotenv-rails', :require => 'dotenv/rails-now'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'slim'
 gem 'bootstrap-datepicker-rails'
@@ -54,4 +55,3 @@ gem 'devise'
 gem 'cancancan'
 gem 'pg'
 gem 'puma'
-gem 'dotenv'

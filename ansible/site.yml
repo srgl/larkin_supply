@@ -48,7 +48,6 @@
         - openssl
         - libgmp-dev
         - npm
-        - nodejs-legacy
 
     - name: Detect rvm binary
       stat: path=/home/{{ user_name }}/.rvm/bin/rvm
@@ -87,9 +86,6 @@
 
     - name: Create nginx.conf
       template: src=templates/nginx.conf.j2 dest=/etc/nginx/sites-enabled/{{ app_name }}
-
-    - name: Restart nginx
-      service: name=nginx state=restarted
 
     - name: Install puma
       command: bash -cl 'gem install puma --no-ri --no-rdoc'
