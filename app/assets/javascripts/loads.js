@@ -16,4 +16,28 @@ $(document).on('ready page:load', function(){
     });
     return false;
   });
+
+
+  $('.commands .move-up').click(function(){
+    var row = $(this).closest('tr');
+    var previousRow = row.prev('tr');
+    if(previousRow.length){
+      row.insertBefore(previousRow);
+    }
+    return false;
+  });
+
+  $('.commands .move-down').click(function(){
+    var row = $(this).closest('tr');
+    var nextRow = row.next('tr');
+    if(nextRow.length){
+      row.insertAfter(nextRow);
+    }
+    return false;
+  });
+
+  $('.commands .remove').click(function(){
+    $(this).closest('tr').remove();
+    return false;
+  });
 });

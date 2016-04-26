@@ -1,5 +1,6 @@
 class Load < ActiveRecord::Base
-  has_many :orders, autosave: false
+  has_many :orders, -> { order(:order) }, autosave: false
+  accepts_nested_attributes_for :orders
 
   enum delivery_shift: [:morning, :noon, :evening]
 
@@ -21,7 +22,6 @@ class Load < ActiveRecord::Base
   end
 
   def delivery_shift_occupation
-    puts self.attributes
     loads = Load.where(delivery_shift: Load.delivery_shifts[delivery_shift], delivery_date: delivery_date)
     loads = loads.where.not(id: id) if id
     errors.add(:base, "Delivery shift is already occupied") if loads.count > 0
@@ -32,4 +32,5 @@ class Load < ActiveRecord::Base
       errors.add(:base, "Available volume of #{AVAILABLE_VOLUME}ft3 exceeded")
     end
   end
+
 end

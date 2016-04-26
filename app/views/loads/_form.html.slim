@@ -33,7 +33,6 @@
   table.table.table-striped
     thead
       tr
-        th
         th Order
         th Delivery&nbsp;Date
         th Delivery&nbsp;Shift
@@ -43,11 +42,11 @@
         th Street
         th Phone
         th Volume
+        th
     tbody
-      - @orders.each do |order|
+      - @load.orders.each do |order|
         tr
-          td
-            == check_box_tag "load[order_ids][]", order.id, @load.order_ids.include?(order.id), {id: "load_order_#{order.id}"}
+          input type="hidden" name="load[order_ids][]" value="#{order.id}"
           td == link_to order_title(order), order_path(order)
           td = order.delivery_date
           td = order.delivery_shift
@@ -57,3 +56,10 @@
           td = order.destination_raw_line_1
           td = order.phone_number
           td = order.volume
+          - if can? :update, @load
+            td.commands
+              .btn-group.btn-group-xs
+                button.btn.btn-default.glyphicon.glyphicon-menu-up.move-up
+                button.btn.btn-default.glyphicon.glyphicon-menu-down.move-down
+                button.btn.btn-default.glyphicon.glyphicon-remove.remove
+
