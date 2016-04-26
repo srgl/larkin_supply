@@ -26,13 +26,13 @@ class LoadsController < ApplicationController
   end
 
   def update
-    @load.assign_attributes(load_params)
+    params[:load][:orders_attributes] = []
 
-    @load.orders.each do |order|
-      order.order = load_params[:order_ids].index(order.id.to_s)
+    params[:load][:order_ids].each_with_index do |id, i|
+      params[:load][:orders_attributes] << {id: id, order: i} if !id.blank?
     end
 
-    if @load.save
+    if @load.update(load_params)
       return redirect_to load_url(@load)
     end
     render :show
@@ -62,6 +62,7 @@ class LoadsController < ApplicationController
     params.require(:load).permit(
       :delivery_date,
       :delivery_shift,
-      {order_ids: []})
+      order_ids: [],
+      orders_attributes: [:id, :order])
   end
 end

@@ -1,5 +1,5 @@
 class Load < ActiveRecord::Base
-  has_many :orders, -> { order(:order) }, autosave: false
+  has_many :orders, -> { order(:order) }
   accepts_nested_attributes_for :orders
 
   enum delivery_shift: [:morning, :noon, :evening]

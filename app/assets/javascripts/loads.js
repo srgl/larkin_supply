@@ -1,22 +1,21 @@
 $(document).on('ready page:load', function(){
-  $('.btn.add-order').click(function(){
-    var data = {order_ids: []};
+  $('.btn.add-orders').click(function(){
+    var data = {ids: []};
+    $('form.edit_load input[name="load[order_ids][]"]').each(function(){
+      if($(this).val())
+        data.ids.push($(this).val());
+    });
     $.post($(this).attr('href'), data, function(result){
-      var modal_holder = $('.modal-holder');
-      var modal = modal_holder.html('').append(result).find('.modal').modal();
-      modal.find('.add-btn').on('click', function(){
-        var data = {'_method': 'post', order_ids: []};
+      var modal = $('.modal-holder').html('').append(result).find('.modal').modal();
+      modal.find('.btn-ok').click(function(){
         modal.find('.select-checkbox:checked').each(function(){
-          data.order_ids.push($(this).val());
-          $('.edit_load').append('<input type="hidden" name="order_ids[]" value='+$(this).val()+' />');
+          $('form.edit_load').append('<input type="hidden" name="load[order_ids][]" value='+$(this).val()+' />');
         });
-        $('.edit_load').submit()
-
+        $('form.edit_load').submit()
       });
     });
     return false;
   });
-
 
   $('.commands .move-up').click(function(){
     var row = $(this).closest('tr');

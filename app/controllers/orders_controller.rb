@@ -10,7 +10,6 @@ class OrdersController < ApplicationController
   def show
   end
 
-
   def new
     @order = Order.new
   end
@@ -46,6 +45,12 @@ class OrdersController < ApplicationController
     respond_to do |format|
       format.json { render :json => { redirect: orders_url } }
     end
+  end
+
+  def lookup
+    ids = params[:ids]
+    @orders = Order.where.not(id: ids).ordered_by_date
+    render layout: 'modal'
   end
 
   private
