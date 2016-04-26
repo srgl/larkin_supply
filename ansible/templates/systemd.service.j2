@@ -1,0 +1,14 @@
+# {{ ansible_managed }}
+[Unit]
+Description={{ app_name }} puma app
+Wants=postgresql.service
+After=network.target
+
+[Service]
+User={{ user_name }}
+Restart=on-failure
+WorkingDirectory={{ app_path }}/current
+ExecStart=/bin/bash -lc 'bundle exec puma'
+
+[Install]
+WantedBy=multi-user.target
