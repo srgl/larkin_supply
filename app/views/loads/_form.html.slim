@@ -33,4 +33,4 @@
     - if can? :update, @load
       a.btn.btn-default.add-orders href="#{lookup_orders_path}" Add orders
   == hidden_field_tag "load[order_ids][]", nil
-  == render 'orders/grid', orders: @load.orders, form: true, rearrangable: true, selectable: false
+  == render 'orders/grid', orders: @load.orders, form: true, rearrangable: can?(:edit, Load), selectable: false
