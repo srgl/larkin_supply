@@ -27,6 +27,10 @@
       .form-group
         == f.label :total_volume
         == f.text_field :total_volume, class: "form-control", disabled: true
+    .col-md-6
+      .form-group
+        == f.label :initial_volume
+        == f.text_field :initial_volume, class: "form-control", disabled: true
 
   h2 Orders
   .toolbar

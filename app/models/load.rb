@@ -17,6 +17,10 @@ class Load < ActiveRecord::Base
     "L#{date}#{delivery_shift[0].upcase}"
   end
 
+  def initial_volume
+    orders.select{ |order| !order.return }.inject(0){ |v, order| v + order.volume }
+  end
+
   def total_volume
     orders.inject(0){ |v, order| v + order.volume }
   end
@@ -28,9 +32,23 @@ class Load < ActiveRecord::Base
   end
 
   def volume_excess
-    if total_volume > AVAILABLE_VOLUME
-      errors.add(:base, "Available volume of #{AVAILABLE_VOLUME}ft3 exceeded")
+    volume = initial_volume()
+    if volume > AVAILABLE_VOLUME
+      errors.add(:base, "Inital truckload exceeds available volume in truck (#{AVAILABLE_VOLUME}ft3)")
+      return
     end
+
+    orders.sort_by(&:order).each { |order|
+      if !order.return
+        volume -= order.volume
+      else
+        volume += order.volume
+        if volume > AVAILABLE_VOLUME
+          errors.add(:base, "Excess of available volume in truck (#{AVAILABLE_VOLUME}ft3) while processing return on stop #{order.order}")
+          break
+        end
+      end
+    }
   end
 
 end
