@@ -54,4 +54,7 @@ gem 'wicked_pdf'
 gem 'devise'
 gem 'cancancan'
 gem 'pg'
-gem 'puma'
+
+group :production do
+  gem 'puma'
+end
