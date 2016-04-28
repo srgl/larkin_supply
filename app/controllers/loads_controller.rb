@@ -8,12 +8,10 @@ class LoadsController < ApplicationController
   end
 
   def show
-    @orders = Order.ordered_by_ids_and_date(@load.order_ids)
   end
 
   def new
     @load = Load.new
-    @orders = Order.ordered_by_date()
   end
 
   def create
@@ -23,7 +21,6 @@ class LoadsController < ApplicationController
     if @load.save
       return redirect_to load_url(@load)
     end
-    @orders = Order.ordered_by_ids_and_date(@load.order_ids)
     render :new
   end
 
@@ -45,7 +42,6 @@ class LoadsController < ApplicationController
   end
 
   def download
-    @orders = Order.ordered_by_ids_and_date(@load.order_ids)
     pdf = render_to_string pdf: "#{@load.load_number}", layout: "pdf", template: "loads/show", viewport_size: '1920x995'
     send_data pdf, filename: "#{@load.load_number}.pdf"
   end
