@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160426063911) do
+ActiveRecord::Schema.define(version: 20160428202633) do
 
   create_table "loads", force: :cascade do |t|
     t.date     "delivery_date"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20160426063911) do
     t.datetime "updated_at",             null: false
     t.integer  "load_id"
     t.integer  "order"
+    t.boolean  "return"
   end
 
   add_index "orders", ["load_id"], name: "index_orders_on_load_id"
