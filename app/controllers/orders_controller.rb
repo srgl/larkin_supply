@@ -84,6 +84,7 @@ class OrdersController < ApplicationController
       :mode,
       :volume,
       :handling_unit_quantity,
-      :handling_unit_type)
+      :handling_unit_type,
+      :return)
   end
 end

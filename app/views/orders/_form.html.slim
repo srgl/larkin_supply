@@ -42,6 +42,9 @@
       .form-group
         == f.label :client_name
         == f.text_field :client_name, class: "form-control"
+      .form-group
+        == f.label :return
+        == f.select :return, [["No", false], ["Yes", true]], { }, class: "form-control"
 
     .col-md-6
       .form-group

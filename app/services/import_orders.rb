@@ -28,6 +28,7 @@ class ImportOrders
           else
             hash["delivery_date"] = nil
           end
+          hash["return"] = hash["origin_name"] != LarkinSupply::COMPANY_NAME
           hash = permitter.call(ActionController::Parameters.new({order: hash}))
           Order.create!(hash)
           imported += 1

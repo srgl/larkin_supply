@@ -12,6 +12,7 @@
         th Origin&nbsp;Address
         th Destination&nbsp;Address
         th Phone
+        th Return
         th Type
         th Qty
         th Volume
@@ -27,12 +28,13 @@
               input.select-checkbox type="checkbox" value="#{order.id}"
           td == link_to order_title(order), order_path(order)
           td = order.delivery_date
-          td = order.delivery_shift
+          td = order.delivery_shift.to_s.humanize
           td = order.client_name
           td = order.origin_address
           td = order.destination_address
           td = order.phone_number
-          td = order.handling_unit_type
+          td = bool_yes_no(order.return)
+          td = order.handling_unit_type.to_s.humanize
           td = order.handling_unit_quantity
           td = order.volume
           - if rearrangable
