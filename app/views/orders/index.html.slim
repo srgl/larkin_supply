@@ -5,4 +5,4 @@ h1 Orders
   a.btn.btn-default.delete-btn.disabled href="#{orders_path}" Delete order(s)
   a.btn.btn-default href="#{import_orders_path}" Import from CSV
 
-== render 'grid', orders: @orders, form: false, rearrangable: false, selectable: true
+== render 'grid', orders: @orders, form: false, rearrangable: false, selectable: { all: true }, lookup: false

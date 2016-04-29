@@ -13,7 +13,7 @@ class Load < ActiveRecord::Base
 
   def load_number
     date = '00000000'
-    date = delivery_date.strftime('%Y%m%d') if delivery_date
+    date = delivery_date.strftime('%Y%m%d')
     "L#{date}#{delivery_shift[0].upcase}"
   end
 

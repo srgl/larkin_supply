@@ -1,19 +1,22 @@
 .grid
-  table.table.table-striped
+  table.table.table-striped.table-condensed
     thead
       tr
         - if selectable
           th
-            input#select-all-checkbox type="checkbox"
+            - if selectable[:all]
+              input#select-all-checkbox type="checkbox"
         th Order
         th Delivery&nbsp;Date
-        th Delivery&nbsp;Shift
-        th Client&nbsp;Name
+        - if !lookup
+          th Origin&nbsp;Name
         th Origin&nbsp;Address
         th Destination&nbsp;Address
+        th Client&nbsp;Name
         th Phone
         th Return
-        th Type
+        - if !lookup
+          th Type
         th Qty
         th Volume
         - if rearrangable
@@ -27,14 +30,16 @@
             td
               input.select-checkbox type="checkbox" value="#{order.id}"
           td == link_to order_title(order), order_path(order)
-          td = order.delivery_date
-          td = order.delivery_shift.to_s.humanize
+          td = delivery_date(order)
+          - if !lookup
+            td = order.origin_name
+          td = origin_address(order)
+          td = destination_address(order)
           td = order.client_name
-          td = order.origin_address
-          td = order.destination_address
           td = order.phone_number
           td = bool_yes_no(order.return)
-          td = order.handling_unit_type.to_s.humanize
+          - if !lookup
+            td = order.handling_unit_type.to_s.humanize
           td = order.handling_unit_quantity
           td = order.volume
           - if rearrangable
