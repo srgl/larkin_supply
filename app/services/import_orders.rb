@@ -1,7 +1,6 @@
 require 'csv'
 
 class ImportOrders
-  DATE_REGEXP = /\d{1,2}\/\d{1,2}\/\d{4}/
   SHIFT_MAP = {"M" => :morning, "N" => :noon, "E" => :evening}
   MODE_MAP = {"TRUCKLOAD" => :truckload}
   UNIT_TYPE_MAP = {"box" => :box}
@@ -23,11 +22,7 @@ class ImportOrders
           hash["mode"] = MODE_MAP[hash["mode"]]
           hash["handling_unit_type"] = UNIT_TYPE_MAP[hash["handling_unit_type"]]
           hash["client_name"] = hash.delete("client name")
-          if DATE_REGEXP =~ hash["delivery_date"]
-            hash["delivery_date"] = Date.strptime(hash["delivery_date"], "%m/%d/%Y")
-          else
-            hash["delivery_date"] = nil
-          end
+          hash["delivery_date"] = Date.strptime(hash["delivery_date"], "%m/%d/%Y") if !hash["delivery_date"].blank?
           hash["return"] = hash["origin_name"] != LarkinSupply::COMPANY_NAME
           hash = permitter.call(ActionController::Parameters.new({order: hash}))
           Order.create!(hash)
